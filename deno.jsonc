@@ -1,0 +1,7 @@
+{
+  "importMap": "import_map.jsonc",
+  "tasks": {
+    "bootstrap": "deno run -A scripts/bootstrap.ts",
+    "generate": "deno run -A scripts/generate.ts"
+  }
+}
