@@ -315,7 +315,7 @@ const p = {
   },
   obj: {
     value(...properties) {
-      return extend(this, "{\n", properties.join(" ,\n"), "\n}");
+      return extend(this, "{", properties.join(" , "), "}");
     },
   },
   object: {

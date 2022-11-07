@@ -126,7 +126,6 @@ const groupsObj: Record<string, Group> = {
     before: "{",
     after: "}",
     separator: ",",
-    multi: true,
     parameters: ["properties"],
   },
   types: {
