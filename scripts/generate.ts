@@ -226,9 +226,9 @@ await Deno.writeTextFile(
   data.dtsout,
   await format(
     jen.statements(
-      jen.declare.const.id("tag").type(jen.unique.symbol),
+      jen.declare.const.prop("tag", jen.unique.symbol),
       jen.export.interface.id("Expr").block(
-        jen.readonly.computed(jen.id("tag")).type(jen.unknown),
+        jen.readonly.prop(jen.computed(jen.id("tag")), jen.unknown),
         ...sortedEntryValues<jen.Expr>([
           ...data.keywords.map(
             ([keyword]): [string, jen.Expr] => [
@@ -263,9 +263,10 @@ await Deno.writeTextFile(
                             ((group.variadic &&
                                 parameters.length === index + 1)
                               ? jen.op("...")
-                              : jen).id(name).append(
-                                ...optional ? [jen.op("?")] : [],
-                              ).type(
+                              : jen).prop(
+                                jen.id(name).add(
+                                  ...optional ? [jen.op("?")] : [],
+                                ),
                                 type.append(
                                   ...group.variadic &&
                                       parameters.length === index + 1
@@ -274,7 +275,7 @@ await Deno.writeTextFile(
                                 ),
                               ),
                         ),
-                    ).type(jen.id("Expr")),
+                    ).op(":").id("Expr"),
                 ],
               ),
           ),
@@ -283,17 +284,19 @@ await Deno.writeTextFile(
           ): [string, jen.Expr] => [
             name,
             jen.comment([data.groupByName("operator").comment]).id(name).params(
-              jen.id("op").type(
+              jen.prop(
+                "op",
                 jen.union(
                   ...data.operators.map(([operator]) => jen.lit(operator)),
                 ),
               ),
-            ).type(jen.id("Expr")),
+            ).op(":").id("Expr"),
           ]),
         ]),
-        jen.id("toString").params().type(jen.string),
+        jen.id("toString").params().op(":").string,
       ),
-      jen.export.declare.const.id("jen").type(
+      jen.export.declare.const.prop(
+        "jen",
         jen.id("Omit").types(jen.id("Expr"), jen.typeof(jen.id("tag"))),
       ),
       jen.export.namespace.id("jen").block(

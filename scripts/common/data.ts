@@ -185,15 +185,10 @@ const groupsObj: Record<string, Group> = {
     ],
   },
   property: {
-    comment: "use for object properties",
+    comment: "use for object properties and type annotations",
     aliases: ["prop"],
     separator: ":",
     parameters: ["name:string | Expr", "valueOrType"],
-  },
-  type: {
-    comment: "use for type annotations",
-    before: ":",
-    parameters: ["type"],
   },
   dot: {
     comment: "use for property access",

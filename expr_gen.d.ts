@@ -538,12 +538,12 @@ export interface Expr {
   readonly private: Expr;
 
   /**
-   * use for object properties
+   * use for object properties and type annotations
    */
   prop(name: string | Expr, valueOrType: Expr): Expr;
 
   /**
-   * use for object properties
+   * use for object properties and type annotations
    */
   property(name: string | Expr, valueOrType: Expr): Expr;
 
@@ -648,9 +648,9 @@ export interface Expr {
   tuple(...items: Expr[]): Expr;
 
   /**
-   * use for type annotations
+   * use for type keyword
    */
-  type(type: Expr): Expr;
+  readonly type: Expr;
 
   /**
    * use for typeof expressions

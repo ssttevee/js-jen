@@ -459,8 +459,8 @@ const p = {
     },
   },
   type: {
-    value(type) {
-      return extend(this, ":", type);
+    get() {
+      return extend(this, "type");
     },
   },
   typeof: {
