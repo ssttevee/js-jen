@@ -2,6 +2,8 @@ import jen, { format } from "../mod.ts";
 import * as data from "./common/data.ts";
 import { sortedEntryValues } from "./common/util.ts";
 
+console.log('[INFO]', data.jsout);
+
 await Deno.writeTextFile(
   data.jsout,
   await format(

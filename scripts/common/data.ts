@@ -1,4 +1,5 @@
 import type { JSONSchema4 } from "https://unpkg.com/@types/json-schema@7.0.11/index.d.ts";
+import { dirname, fromFileUrl, join } from "https://deno.land/std/path/mod.ts";
 import ts from "typescript";
 import rootSchema from "https://raw.githubusercontent.com/ssttevee/tstree-json-schema/v5.41.0/ast-spec.json" assert {
   type: "json",
@@ -294,5 +295,9 @@ export function groupNames(name: keyof typeof groupsObj): string[] {
 
 export const groups = Object.entries(groupsObj);
 
-export const jsout = new URL("../../expr_gen.js", import.meta.url).pathname;
-export const dtsout = new URL("../../expr_gen.d.ts", import.meta.url).pathname;
+// export const jsout = new URL("../../expr_gen.js", import.meta.url).pathname;
+// REFERENCE: https://stackoverflow.com/questions/68249576/how-to-comfortably-work-with-paths-that-are-relative-to-the-working-directory-in
+export const projectRoot = dirname(fromFileUrl(Deno.mainModule));
+export const jsout = join(projectRoot, 'expr_gen.js');
+export const dtsout = join(projectRoot, 'expr_gen.d.ts');
+// export const dtsout = new URL("../../expr_gen.d.ts", import.meta.url).pathname;
