@@ -15,3 +15,9 @@ spaced out which make for visually displeasing code.
 
 > See the "[stage-2](scripts/generate.ts)" self-generator for a comprehensive
 > example.
+
+## Documentation
+To run the documentation locally for this project:
+```sh
+docsify serve docs
+```

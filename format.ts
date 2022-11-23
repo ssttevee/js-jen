@@ -16,12 +16,28 @@ export class FormatError extends Error {
 export async function format(
   js: string,
   returnUnformatted = false,
+  useTabs = false,
+  lineWidth = 80,
+  indentWidth = 2,
+  singleQuote = false,
+  proseWrap: "always" | "never" | "preserve" = "always"
 ): Promise<string> {
-  const p = Deno.run({
-    cmd: [Deno.execPath(), "fmt", "-"],
-    stdin: "piped",
-    stdout: "piped",
-  });
+  const p = Deno.run(
+    {
+      cmd: [
+        Deno.execPath(),
+        "fmt",
+        "-",
+        `--options-use-tabs=${ useTabs }`,
+        `--options-line-width=${ lineWidth }`,
+        `--options-indent-width=${ indentWidth }`,
+        `--options-single-quote=${ singleQuote }`,
+        `--options-prose-wrap=${ proseWrap }`
+      ],
+      stdin: "piped",
+      stdout: "piped"
+    }
+  );
   try {
     p.stdin.write(new TextEncoder().encode(js));
     p.stdin.close();

@@ -295,9 +295,6 @@ export function groupNames(name: keyof typeof groupsObj): string[] {
 
 export const groups = Object.entries(groupsObj);
 
-// export const jsout = new URL("../../expr_gen.js", import.meta.url).pathname;
+export const jsout = fromFileUrl(new URL("../../expr_gen.js", import.meta.url));
 // REFERENCE: https://stackoverflow.com/questions/68249576/how-to-comfortably-work-with-paths-that-are-relative-to-the-working-directory-in
-export const projectRoot = dirname(fromFileUrl(Deno.mainModule));
-export const jsout = join(projectRoot, 'expr_gen.js');
-export const dtsout = join(projectRoot, 'expr_gen.d.ts');
-// export const dtsout = new URL("../../expr_gen.d.ts", import.meta.url).pathname;
+export const dtsout = fromFileUrl(new URL("../../expr_gen.d.ts", import.meta.url));
