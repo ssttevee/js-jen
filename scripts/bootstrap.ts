@@ -6,7 +6,7 @@ import { sortedEntryValues } from "./common/util.ts";
 const { factory } = ts;
 
 // TODO: document this
-// bootstrap: https://en.wikipedia.org/wiki/Bootstrapping_(compilers)
+// bootstrap:
 await Deno.writeTextFile(
   data.jsout,
   await format(

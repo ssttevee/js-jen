@@ -1,5 +1,2 @@
-const i = 3;
-const j = 3;
-if (i === j) {
-  console.log("hello world");
-}
+const x = 4;
+assert(x % 2 === 0);

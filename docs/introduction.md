@@ -31,4 +31,16 @@ await Deno.writeTextFile(
 );
 ```
 
-// TODO: write about format: https://deno.land/manual@v1.28.1/tools/formatter
+This would output:
+```ts
+const i = 3;
+const j = 3;
+if (i === j) {
+  console.log("hello world");
+}
+```
+
+We use a bootstrapping compiler to generate the base Jen compiler that is used for the API.
+This is why we have a bootstrap.ts & a generate.ts file that both essentially do the same thing.
+
+Reference: https://en.wikipedia.org/wiki/Bootstrapping_(compilers)

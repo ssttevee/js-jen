@@ -22,17 +22,27 @@ export async function format(
   singleQuote = false,
   proseWrap: "always" | "never" | "preserve" = "always"
 ): Promise<string> {
+  const options = [
+    `--options-line-width=${ lineWidth }`,
+    `--options-indent-width=${ indentWidth }`,
+    `--options-prose-wrap=${ proseWrap }`
+  ];
+
+  if (useTabs) {
+    options.push("--options-use-tabs");
+  }
+
+  if (singleQuote) {
+    options.push("--options-single-quote");
+  }
+
   const p = Deno.run(
     {
       cmd: [
         Deno.execPath(),
         "fmt",
         "-",
-        `--options-use-tabs=${ useTabs }`,
-        `--options-line-width=${ lineWidth }`,
-        `--options-indent-width=${ indentWidth }`,
-        `--options-single-quote=${ singleQuote }`,
-        `--options-prose-wrap=${ proseWrap }`
+        ...options
       ],
       stdin: "piped",
       stdout: "piped"
