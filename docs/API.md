@@ -88,7 +88,39 @@ assert(x % 2 === 0);
 ```
 ## asserts
 ## async
+```ts
+jen.async.function(jen.id("f"),
+    jen.id("a").op(":").number,
+    jen.id("b").op(":").number
+).block(
+    jen.return(jen.id('a').op('*').id('b'))
+)
+```
+
+```ts
+async function f(a: number, b: number) {
+  return a * b;
+}
+```
 ## await
+```ts
+jen.statements(
+    jen.async.function(
+        jen.id('f'),
+        jen.id('a').op(':').number,
+        jen.id('b').op(':').number
+    ).block(
+        jen.return(jen.id('a').op('*').id('b'))
+    ),
+    jen.const.id("x").op("=").await(jen.id("f").call(jen.literal(2), jen.literal(3)))
+);
+```
+```ts
+async function f(a: number, b: number) {
+  return a * b;
+}
+const x = await f(2, 3);
+```
 ## bigint
 ## block
 ## boolean

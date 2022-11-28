@@ -1,2 +1,4 @@
-const x = 4;
-assert(x % 2 === 0);
+async function f(a: number, b: number) {
+  return a * b;
+}
+const x = await f(2, 3);
