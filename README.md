@@ -1,9 +1,13 @@
-# deno-jen
+# jennifer-js
 
-A code generator for typescript. Inspired by https://github.com/dave/jennifer.
+Jennifer is a code generator for typescript. Inspired by
+https://github.com/dave/jennifer.
 
 ```
-await format(jen.id("console").dot("log").call(jen.lit("hello world")).toString())
+import jen from "jennifer-js";
+import format from "jennifer-js/format";
+
+format(jen.id("console").dot("log").call(jen.lit("hello world")).toString())
 
 # yields
 

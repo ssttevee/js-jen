@@ -1,4 +1,4 @@
-import { readAll } from "https://deno.land/std@0.155.0/streams/conversion.ts";
+import dprint from "dprint-node";
 
 export class FormatError extends Error {
   constructor(
@@ -13,19 +13,12 @@ export class FormatError extends Error {
   }
 }
 
-export async function format(
+export function format(
   js: string,
   returnUnformatted = false,
-): Promise<string> {
-  const p = Deno.run({
-    cmd: [Deno.execPath(), "fmt", "-"],
-    stdin: "piped",
-    stdout: "piped",
-  });
+): string {
   try {
-    p.stdin.write(new TextEncoder().encode(js));
-    p.stdin.close();
-    return new TextDecoder().decode(await readAll(p.stdout));
+    return dprint.format("code.ts", js);
   } catch (err) {
     const fmterr = new FormatError(err, js);
     if (returnUnformatted) {
@@ -33,8 +26,7 @@ export async function format(
       return js;
     }
     throw fmterr;
-  } finally {
-    p.stdout.close();
-    p.close();
   }
 }
+
+export default format;

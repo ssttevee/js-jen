@@ -1,5 +1,0 @@
-{
-  "imports": {
-    "typescript": "https://raw.githubusercontent.com/ssttevee/deno-typescript/v1.27.0/mod.ts"
-  }
-}

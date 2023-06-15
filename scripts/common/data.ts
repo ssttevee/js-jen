@@ -1,8 +1,7 @@
-import type { JSONSchema4 } from "https://unpkg.com/@types/json-schema@7.0.11/index.d.ts";
+import type { JSONSchema4 } from "json-schema";
+import path from "path";
 import ts from "typescript";
-import rootSchema from "https://raw.githubusercontent.com/ssttevee/tstree-json-schema/v5.41.0/ast-spec.json" assert {
-  type: "json",
-};
+import rootSchema from "tstree-json-schema/ast-spec.json";
 
 /**
  * NOTE: this is an internal value in the TypeScript compiler
@@ -294,5 +293,5 @@ export function groupNames(name: keyof typeof groupsObj): string[] {
 
 export const groups = Object.entries(groupsObj);
 
-export const jsout = new URL("../../expr_gen.js", import.meta.url).pathname;
-export const dtsout = new URL("../../expr_gen.d.ts", import.meta.url).pathname;
+export const jsout = path.resolve(__dirname, "../../src/expr_gen.js");
+export const dtsout = path.resolve(__dirname, "../../src/expr_gen.d.ts");
