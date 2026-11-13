@@ -198,18 +198,17 @@ Promise.all([
             ),
           ).op("+").id("extensions").dot("filter").params(jen.id("Boolean"))
             .dot("join").params(jen.lit(" ")),
-          jen.return(
-            jen.id("Object").dot("defineProperties").params(
-              jen.obj(
-                jen.prop(
-                  "toString",
-                  jen.arrow().id("code"),
-                ),
-              ),
-              jen.id("p"),
-            ),
+          // Share the builder methods through a prototype. Defining all of
+          // them on every node made code generation spend most of its time
+          // in this function.
+          jen.const.id("node").op("=").id("Object").dot("create").params(
+            jen.id("proto"),
           ),
+          jen.id("node").dot("toString").op("=").arrow().id("code"),
+          jen.return(jen.id("node")),
         ),
+        jen.const.id("proto").op("=").id("Object").dot("defineProperties")
+          .params(jen.obj(), jen.id("p")),
         jen.const.id("trivia").op("=").arrow(jen.id("s")).cond(
           jen.parens(
             jen.id("Array").dot("isArray").params(jen.id("s")).op("||").parens(
