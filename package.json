@@ -1,6 +1,6 @@
 {
   "name": "jennifer-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Jennifer is a code generator for typescript. Inspired by https://github.com/dave/jennifer",
   "author": "ssttevee",
   "license": "MIT",
